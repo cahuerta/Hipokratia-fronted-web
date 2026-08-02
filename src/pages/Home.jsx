@@ -20,6 +20,12 @@ const servicios = [
       'Síntesis de literatura médica asistida por IA, con documentos clínicos generados en minutos y trazabilidad de cada fuente.',
   },
   {
+    to: '/aprende',
+    nombre: 'Hipokratia Aprende',
+    descripcion:
+      'Evidencia científica traducida a lenguaje simple, para que cualquier paciente entienda qué dice la ciencia sobre su diagnóstico.',
+  },
+  {
     to: '/catedra',
     nombre: 'Hipokratia Cátedra Interactiva',
     descripcion:
