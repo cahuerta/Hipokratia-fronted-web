@@ -8,17 +8,17 @@ export default {
     extend: {
       colors: {
         hipokratia: {
-          900: '#0A3540', // azul petróleo profundo (headers, textos fuertes)
-          800: '#0F4C5C', // azul petróleo base (marca primaria)
-          700: '#15667A',
-          600: '#1D82A0',
-          100: '#E6F0F2', // fondo suave para secciones alternas
-          50:  '#F7FAFB', // fondo base, casi blanco
+          900: '#182943', // azul marino profundo (símbolo del logo, headers, textos fuertes)
+          800: '#1F3455',
+          700: '#294570',
+          600: '#355A8F',
+          100: '#E7ECF3', // fondo suave para secciones alternas
+          50:  '#F7F9FC', // fondo base, casi blanco
         },
         salud: {
-          700: '#215D33',
-          600: '#2E7D32', // verde acento (CTAs, íconos destacados)
-          400: '#4CA85C',
+          700: '#028089',
+          600: '#02A5AC', // turquesa del logo (CTAs, acentos, links activos)
+          400: '#4FC3C9',
         },
       },
       fontFamily: {
