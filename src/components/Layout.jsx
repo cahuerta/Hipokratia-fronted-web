@@ -4,6 +4,7 @@ const navItems = [
   { to: '/portal', label: 'Portal' },
   { to: '/gestion', label: 'Gestión' },
   { to: '/dossier', label: 'Dossier' },
+  { to: '/aprende', label: 'Aprende' },
   { to: '/catedra', label: 'Cátedra Interactiva' },
 ]
 
