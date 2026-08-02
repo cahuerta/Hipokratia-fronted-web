@@ -2,26 +2,26 @@ import { Link } from 'react-router-dom'
 
 const servicios = [
   {
-    to: '/ficha-clinica',
-    nombre: 'Gestión Clínica Integral',
+    to: '/gestion',
+    nombre: 'Hipokratia Gestión',
     descripcion:
       'Ficha clínica, agenda, facturación y roles profesionales en una sola plataforma, pensada para el flujo real de un centro de salud.',
   },
   {
-    to: '/misalud',
-    nombre: 'Portal de Pacientes',
+    to: '/portal',
+    nombre: 'Hipokratia Portal',
     descripcion:
       'Acceso a la ficha propia, indicaciones y planes de tratamiento desde el celular, con notificaciones que acompañan cada etapa del cuidado.',
   },
   {
-    to: '/evidenciamed',
-    nombre: 'Análisis de Evidencia Científica',
+    to: '/dossier',
+    nombre: 'Hipokratia Dossier',
     descripcion:
       'Síntesis de literatura médica asistida por IA, con documentos clínicos generados en minutos y trazabilidad de cada fuente.',
   },
   {
-    to: '/docencia',
-    nombre: 'Plataforma Educativa en Vivo',
+    to: '/catedra',
+    nombre: 'Hipokratia Cátedra Interactiva',
     descripcion:
       'Casos clínicos proyectados en tiempo real, votación de estudiantes y asistencia por QR para la formación médica moderna.',
   },
