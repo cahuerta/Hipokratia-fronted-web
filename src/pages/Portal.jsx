@@ -35,15 +35,45 @@ export default function Portal() {
             Acceso gratuito para pacientes
           </h2>
           <p className="mt-2 text-hipokratia-800/80">
-            Hipokratia Portal es de acceso gratuito por ahora. Entra con tus datos
-            de paciente y revisa tu ficha desde hoy.
+            Hipokratia Portal es de acceso gratuito por ahora. Elige cómo quieres
+            entrar: desde el navegador, o descargando la app para Android.
           </p>
-          <a
-            href="https://portal.hipokratia.health"
-            className="mt-5 inline-block rounded-full bg-salud-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-salud-700"
-          >
-            Ir a Hipokratia Portal →
-          </a>
+
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-xl border border-hipokratia-100 p-5">
+              <p className="text-sm font-semibold text-hipokratia-900">
+                Seguir en la web
+              </p>
+              <p className="mt-1 text-sm text-hipokratia-800/70">
+                Sin instalar nada, entra directo desde tu navegador.
+              </p>
+              <a
+                href="https://portal.hipokratia.health"
+                className="mt-4 inline-block rounded-full bg-salud-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-salud-700"
+              >
+                Ir a Hipokratia Portal →
+              </a>
+            </div>
+
+            <div className="rounded-xl border border-hipokratia-100 p-5">
+              <p className="text-sm font-semibold text-hipokratia-900">
+                Descargar la app (Android)
+              </p>
+              <p className="mt-1 text-sm text-hipokratia-800/70">
+                Recordatorios, notificaciones y acceso más rápido desde tu celular.
+              </p>
+              <a
+                href="https://misalud-backend.onrender.com/api/app/descargar"
+                className="mt-4 inline-block rounded-full border border-hipokratia-300 bg-white px-6 py-3 text-sm font-semibold text-hipokratia-800 transition-colors hover:bg-hipokratia-50"
+              >
+                Descargar APK
+              </a>
+              <p className="mt-2 text-xs text-hipokratia-800/60">
+                Descarga directa, fuera de Google Play. Android puede pedirte
+                habilitar "instalar desde fuentes desconocidas" la primera vez.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
