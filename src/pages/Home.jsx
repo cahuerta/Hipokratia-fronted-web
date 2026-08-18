@@ -1,41 +1,5 @@
 import { Link } from 'react-router-dom'
 
-const serviciosCentros = [
-  {
-    to: '/gestion',
-    nombre: 'Hipokratia Gestión',
-    descripcion:
-      'Ficha clínica, agenda, facturación y roles profesionales en una sola plataforma, pensada para el flujo real de un centro de salud.',
-  },
-  {
-    to: '/dossier',
-    nombre: 'Hipokratia Dossier',
-    descripcion:
-      'Síntesis de literatura médica asistida por IA, con documentos clínicos generados en minutos y trazabilidad de cada fuente.',
-  },
-  {
-    to: '/catedra',
-    nombre: 'Hipokratia Cátedra Interactiva',
-    descripcion:
-      'Casos clínicos proyectados en tiempo real, votación de estudiantes y asistencia por QR para la formación médica moderna.',
-  },
-]
-
-const serviciosPacientes = [
-  {
-    to: '/portal',
-    nombre: 'Hipokratia Portal',
-    descripcion:
-      'Acceso a la ficha propia, indicaciones y planes de tratamiento desde el celular, con notificaciones que acompañan cada etapa del cuidado.',
-  },
-  {
-    to: '/aprende',
-    nombre: 'Hipokratia Aprende',
-    descripcion:
-      'Evidencia científica traducida a lenguaje simple, para que cualquier paciente entienda qué dice la ciencia sobre su diagnóstico.',
-  },
-]
-
 const diferenciadores = [
   {
     titulo: 'Interoperable de base',
@@ -50,41 +14,6 @@ const diferenciadores = [
     texto: 'Cada módulo nace de la práctica clínica diaria, no de un backlog genérico de software.',
   },
 ]
-
-function GrupoServicios({ titulo, subtitulo, servicios, badge }) {
-  return (
-    <div>
-      <div className="flex items-baseline justify-between gap-4">
-        <h3 className="font-display text-xl font-semibold text-hipokratia-900">
-          {titulo}
-        </h3>
-        <span className="rounded-full bg-hipokratia-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-hipokratia-800">
-          {badge}
-        </span>
-      </div>
-      {subtitulo && (
-        <p className="mt-1 text-sm text-hipokratia-800/70">{subtitulo}</p>
-      )}
-      <div className="mt-6 grid gap-6 md:grid-cols-2">
-        {servicios.map((s) => (
-          <Link
-            key={s.to}
-            to={s.to}
-            className="group rounded-2xl border border-hipokratia-100 bg-white p-8 transition-shadow hover:shadow-lg"
-          >
-            <h4 className="font-display text-lg font-semibold text-hipokratia-900">
-              {s.nombre}
-            </h4>
-            <p className="mt-3 text-hipokratia-800/80">{s.descripcion}</p>
-            <span className="mt-5 inline-block text-sm font-semibold text-salud-600 group-hover:underline">
-              Conocer más →
-            </span>
-          </Link>
-        ))}
-      </div>
-    </div>
-  )
-}
 
 export default function Home() {
   return (
@@ -134,26 +63,49 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Servicios */}
+      {/* Servicios: elegí tu camino */}
       <section id="servicios" className="bg-hipokratia-50">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <h2 className="font-display text-3xl font-semibold text-hipokratia-900">
-            Servicios
+          <h2 className="font-display text-3xl font-semibold text-hipokratia-900 text-center">
+            ¿Qué buscas hoy?
           </h2>
 
-          <div className="mt-10 space-y-16">
-            <GrupoServicios
-              titulo="Para tu centro de salud"
-              subtitulo="Herramientas para equipos médicos, gestión clínica y formación."
-              servicios={serviciosCentros}
-              badge="Profesionales"
-            />
-            <GrupoServicios
-              titulo="Para pacientes"
-              subtitulo="Tu ficha, tus indicaciones y la evidencia de tu tratamiento, siempre a mano."
-              servicios={serviciosPacientes}
-              badge="Pacientes"
-            />
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            <Link
+              to="/pacientes"
+              className="group rounded-2xl border border-hipokratia-100 bg-white p-10 text-center transition-shadow hover:shadow-lg"
+            >
+              <span className="rounded-full bg-hipokratia-100 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-hipokratia-800">
+                Pacientes
+              </span>
+              <h3 className="mt-5 font-display text-2xl font-semibold text-hipokratia-900">
+                Soy paciente
+              </h3>
+              <p className="mt-3 text-hipokratia-800/80">
+                Tu ficha, tus indicaciones y la evidencia de tu tratamiento, siempre a mano.
+              </p>
+              <span className="mt-6 inline-block text-sm font-semibold text-salud-600 group-hover:underline">
+                Ver servicios para pacientes →
+              </span>
+            </Link>
+
+            <Link
+              to="/profesionales"
+              className="group rounded-2xl border border-hipokratia-100 bg-white p-10 text-center transition-shadow hover:shadow-lg"
+            >
+              <span className="rounded-full bg-hipokratia-100 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-hipokratia-800">
+                Profesionales
+              </span>
+              <h3 className="mt-5 font-display text-2xl font-semibold text-hipokratia-900">
+                Soy centro médico o profesional
+              </h3>
+              <p className="mt-3 text-hipokratia-800/80">
+                Gestión clínica, síntesis de evidencia y formación médica para tu equipo.
+              </p>
+              <span className="mt-6 inline-block text-sm font-semibold text-salud-600 group-hover:underline">
+                Ver servicios para profesionales →
+              </span>
+            </Link>
           </div>
         </div>
       </section>
