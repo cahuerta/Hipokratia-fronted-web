@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import Carrusel from '../conversa/Carrusel.jsx'
 
 const diferenciadores = [
   {
@@ -47,6 +48,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Asistentes: carrusel; al tocar uno se abre la escena donde conversan */}
+      <Carrusel />
 
       {/* Qué es Hipokratia */}
       <section className="border-t border-hipokratia-100 bg-white">
