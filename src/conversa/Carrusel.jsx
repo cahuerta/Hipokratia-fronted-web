@@ -3,13 +3,27 @@
 // deslizan con el dedo. Al tocar uno se abre la escena completa desde su parte.
 import { useEffect, useRef, useState } from "react";
 import Escena, { AVATARES, ORDEN } from "./Escena.jsx";
-import { inicioDe } from "./guion.js";
+import { GUION, inicioDe } from "./guion.js";
+import { precargar } from "./voz.js";
 
-export default function Carrusel() {
+let yaPrecargado = false;
+
+// compacto: versión del celular, arriba de todo (sin la descripción larga)
+export default function Carrusel({ compacto = false }) {
   const [destacado, setDestacado] = useState(0);
   const [abierta, setAbierta] = useState(null);   // índice del guion donde parte, o null
   const [pausa, setPausa] = useState(false);
   const pista = useRef(null);
+
+  // Apenas se ve la página: despierta al servidor de voz y pide el primer audio
+  // de cada asistente (lo más probable es que toquen uno). El servidor guarda lo
+  // ya generado, así que no se vuelve a cobrar a Azure por cada visita.
+  useEffect(() => {
+    // Solo el carrusel visible (el del celular o el del PC) y una vez por página
+    if (yaPrecargado || window.matchMedia("(max-width: 767px)").matches !== compacto) return;
+    yaPrecargado = true;
+    precargar([0, ...ORDEN.map(inicioDe)].filter((v, i, a) => a.indexOf(v) === i).map((i) => GUION[i]), { despertar: true });
+  }, [compacto]);
 
   // Cambia de destacado cada 3,2 s (se detiene si la persona está tocando)
   useEffect(() => {
@@ -26,28 +40,30 @@ export default function Carrusel() {
   }, [destacado]);
 
   return (
-    <section className="border-t border-hipokratia-100 bg-white" aria-labelledby="t-asistentes">
-      <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
-        <div className="flex flex-col items-start gap-3 md:flex-row md:items-end md:justify-between">
+    <section className={compacto ? "bg-white" : "border-t border-hipokratia-100 bg-white"} aria-labelledby={compacto ? "t-asistentes-cel" : "t-asistentes"}>
+      <div className={compacto ? "mx-auto max-w-6xl px-6 pb-2 pt-5" : "mx-auto max-w-6xl px-6 py-16 md:py-20"}>
+        <div className={compacto ? "flex items-center justify-between gap-3" : "flex flex-col items-start gap-3 md:flex-row md:items-end md:justify-between"}>
           <div>
-            <h2 id="t-asistentes" className="font-display text-3xl font-semibold text-hipokratia-900">
+            <h2 id={compacto ? "t-asistentes-cel" : "t-asistentes"} className={`font-display font-semibold text-hipokratia-900 ${compacto ? "text-xl" : "text-3xl"}`}>
               Conoce a nuestros asistentes
             </h2>
-            <p className="mt-2 max-w-xl text-hipokratia-800/80">
-              Ica, Ipo, Sophia y Katia acompañan a pacientes y equipos. Toca a uno y te cuentan cómo trabajan.
-            </p>
+            {!compacto && (
+              <p className="mt-2 max-w-xl text-hipokratia-800/80">
+                Ica, Ipo, Sophia y Katia acompañan a pacientes y equipos. Toca a uno y te cuentan cómo trabajan.
+              </p>
+            )}
           </div>
           <button
             onClick={() => setAbierta(0)}
-            className="rounded-full bg-salud-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-salud-700"
+            className={`shrink-0 rounded-full bg-salud-600 text-sm font-semibold text-white transition-colors hover:bg-salud-700 ${compacto ? "px-4 py-2" : "px-6 py-3"}`}
           >
-            ▶ Verlos conversar
+            {compacto ? "▶ Ver" : "▶ Verlos conversar"}
           </button>
         </div>
 
         <div
           ref={pista}
-          className="cv-pista"
+          className={`cv-pista${compacto ? " cv-pista--compacta" : ""}`}
           onPointerEnter={() => setPausa(true)}
           onPointerLeave={() => setPausa(false)}
           onTouchStart={() => setPausa(true)}

@@ -210,6 +210,9 @@
 .cv-tarjeta:focus-visible { outline: 2px solid #02A5AC; outline-offset: 6px; border-radius: 16px; }
 
 @media (max-width: 767px) {
+  .cv-pista--compacta { margin-top: 4px; padding-top: 48px; }
+  .cv-pista--compacta .cv-tarjeta { flex-basis: 38%; }
+  .cv-pista--compacta .cv-tarjeta__nombre { font-size: 17px; }
   .cv-pista {
     display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; scrollbar-width: none;
     margin-inline: -24px; padding-inline: 24px;

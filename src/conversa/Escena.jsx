@@ -47,7 +47,8 @@ export default function Escena({ desde = 0, alCerrar }) {
     const tecla = (e) => { if (e.key === "Escape") alCerrar(); };
     window.addEventListener("keydown", tecla);
     cerrarRef.current?.focus();
-    precargar(GUION.slice(desde, desde + 3), { despertar: true });
+    // Todo el guion desde donde parte, de a uno (el servidor guarda lo generado)
+    precargar(GUION.slice(desde), { despertar: true });
     return () => { document.body.style.overflow = antes; window.removeEventListener("keydown", tecla); callarTodo(); };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -56,8 +57,6 @@ export default function Escena({ desde = 0, alCerrar }) {
   useEffect(() => {
     if (!corriendo) return undefined;
     setHablando(true);
-    // Mientras habla, se piden los audios de las dos frases siguientes
-    precargar(GUION.slice(paso + 1, paso + 3));
     const cortar = hablar(escena.texto, escena.quien, {
       conVoz,
       alBoca: setBoca,

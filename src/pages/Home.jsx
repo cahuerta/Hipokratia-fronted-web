@@ -19,6 +19,11 @@ const diferenciadores = [
 export default function Home() {
   return (
     <>
+      {/* Celular: los asistentes arriba de todo, apenas se abre la página */}
+      <div className="md:hidden">
+        <Carrusel compacto />
+      </div>
+
       {/* Hero */}
       <section className="bg-hipokratia-50">
         <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-6 py-24 md:py-32">
@@ -50,7 +55,9 @@ export default function Home() {
       </section>
 
       {/* Asistentes: carrusel; al tocar uno se abre la escena donde conversan */}
-      <Carrusel />
+      <div className="hidden md:block">
+        <Carrusel />
+      </div>
 
       {/* Qué es Hipokratia */}
       <section className="border-t border-hipokratia-100 bg-white">

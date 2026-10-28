@@ -25,6 +25,7 @@ const paraVoz = (t) => t.replace(/\bSophia\b/g, "Sofía");
 
 const audios = new Map();      // clave -> Promise<{ url, env } | null>
 let sinAzureHasta = 0;         // tras una falla, un rato solo con la voz del navegador
+let despierto = false;         // /health una sola vez por página
 
 async function medirVolumen(blob) {
   const Offline = window.OfflineAudioContext || window.webkitOfflineAudioContext;
@@ -51,7 +52,8 @@ async function medirVolumen(blob) {
   return env;
 }
 
-function pedirAudio(texto, quien, espera = 9000) {
+// espera: al hablar, máximo 4 s; si no llega, habla el navegador (precarga: 30 s)
+function pedirAudio(texto, quien, espera = 4000) {
   const v = VOCES[quien];
   const clave = `${quien}|${texto}`;
   if (audios.has(clave)) return audios.get(clave);
@@ -85,7 +87,7 @@ function pedirAudio(texto, quien, espera = 9000) {
 
 /** Despierta al backend y pide los primeros audios mientras la persona mira */
 export function precargar(lineas, { despertar = false } = {}) {
-  if (despertar) fetch(`${BACKEND}/health`, { cache: "no-store" }).catch(() => {});
+  if (despertar && !despierto) { despierto = true; fetch(`${BACKEND}/health`, { cache: "no-store" }).catch(() => {}); }
   lineas.forEach((l, i) => setTimeout(() => pedirAudio(l.texto, l.quien, 30000), i * 400));
 }
 
@@ -157,7 +159,7 @@ export function hablar(texto, quien, { conVoz = true, alBoca, alTerminar }) {
 
   pedirAudio(texto, quien).then((e) => {
     if (!vivo) return;
-    if (!e) { sinAzureHasta = Date.now() + 60000; usarNavegador(); return; }
+    if (!e) { sinAzureHasta = Date.now() + 20000; usarNavegador(); return; }
     const audio = new Audio(e.url);
     let raf = 0;
     let terminado = false;
