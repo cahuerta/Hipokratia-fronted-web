@@ -1,5 +1,6 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import Carrusel from '../conversa/Carrusel.jsx'
+import AsistentesConoce from '../components/AsistentesConoce.jsx'
 
 const diferenciadores = [
   {
@@ -16,13 +17,25 @@ const diferenciadores = [
   },
 ]
 
+// Celular: los asistentes arriba de todo; PC: bajo el título (un solo marco a la vez)
+function useCelular() {
+  const consulta = '(max-width: 767px)'
+  const [cel, setCel] = useState(() => window.matchMedia(consulta).matches)
+  useEffect(() => {
+    const m = window.matchMedia(consulta)
+    const cambio = () => setCel(m.matches)
+    m.addEventListener('change', cambio)
+    return () => m.removeEventListener('change', cambio)
+  }, [])
+  return cel
+}
+
 export default function Home() {
+  const celular = useCelular()
   return (
     <>
-      {/* Celular: los asistentes arriba de todo, apenas se abre la página */}
-      <div className="md:hidden">
-        <Carrusel compacto />
-      </div>
+      {/* Asistentes (conoce.hipokratia.health): en celular, arriba de todo */}
+      {celular && <AsistentesConoce />}
 
       {/* Hero */}
       <section className="bg-hipokratia-50">
@@ -55,9 +68,7 @@ export default function Home() {
       </section>
 
       {/* Asistentes: carrusel; al tocar uno se abre la escena donde conversan */}
-      <div className="hidden md:block">
-        <Carrusel />
-      </div>
+      {!celular && <AsistentesConoce />}
 
       {/* Qué es Hipokratia */}
       <section className="border-t border-hipokratia-100 bg-white">
