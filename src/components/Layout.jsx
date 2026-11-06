@@ -3,6 +3,7 @@ import { Outlet, Link, NavLink } from 'react-router-dom'
 const navItems = [
   { to: '/pacientes', label: 'Pacientes' },
   { to: '/profesionales', label: 'Centros Médicos / Profesionales' },
+  { href: 'https://planes.hipokratia.health', label: 'Planes y precios' },
 ]
 
 const footerPacientes = [
@@ -14,6 +15,7 @@ const footerProfesionales = [
   { to: '/gestion', label: 'Gestión' },
   { to: '/dossier', label: 'Dossier' },
   { to: '/catedra', label: 'Cátedra Interactiva' },
+  { href: 'https://planes.hipokratia.health', label: 'Planes y precios de Gestión' },
 ]
 
 export default function Layout() {
@@ -39,8 +41,13 @@ export default function Layout() {
           </div>
 
           {/* Fila 2 (mobile) / centro (desktop): nav */}
-          <nav className="flex items-center justify-center gap-6 md:flex-1 md:gap-8">
-            {navItems.map((item) => (
+          <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 md:flex-1 md:gap-8">
+            {navItems.map((item) => item.href ? (
+              <a key={item.href} href={item.href}
+                 className="whitespace-nowrap text-sm font-medium text-hipokratia-800 transition-colors hover:text-salud-600">
+                {item.label}
+              </a>
+            ) : (
               <NavLink
                 key={item.to}
                 to={item.to}
@@ -97,7 +104,11 @@ export default function Layout() {
                 Centros Médicos / Profesionales
               </Link>
               <nav className="mt-3 flex flex-col gap-2">
-                {footerProfesionales.map((item) => (
+                {footerProfesionales.map((item) => item.href ? (
+                  <a key={item.href} href={item.href} className="opacity-90 hover:text-salud-400">
+                    {item.label}
+                  </a>
+                ) : (
                   <Link key={item.to} to={item.to} className="opacity-90 hover:text-salud-400">
                     {item.label}
                   </Link>

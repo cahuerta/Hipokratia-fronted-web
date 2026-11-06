@@ -1,3 +1,9 @@
+import { useEffect, useState } from 'react'
+
+// Precio "desde" en vivo: mismo endpoint que planes.hipokratia.health (Superadmin → Precios)
+const PRECIOS_URL = 'https://services.icarticular.cl/api/planes/precios'
+const fmt = (n) => `$${Number(n).toLocaleString('es-CL')}`
+
 const beneficios = [
   'Ficha clínica electrónica, agenda y facturación en un solo sistema',
   'Roles diferenciados: médico, kinesiólogo, psicólogo, odontólogo, administración',
@@ -6,6 +12,18 @@ const beneficios = [
 ]
 
 export default function Gestion() {
+  const [desde, setDesde] = useState(null)
+  useEffect(() => {
+    fetch(PRECIOS_URL)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!d) return
+        const montos = [d.externo_base, ...(d.centro || []).map((r) => r.precio)].filter((n) => n > 0)
+        if (montos.length) setDesde(Math.min(...montos))
+      })
+      .catch(() => {})
+  }, [])
+
   return (
     <section className="bg-hipokratia-50">
       <div className="mx-auto max-w-4xl px-6 py-24">
@@ -30,7 +48,24 @@ export default function Gestion() {
           ))}
         </ul>
 
-        <div className="mt-12 rounded-2xl border border-hipokratia-100 bg-white p-8">
+        <div className="mt-12 rounded-2xl border-2 border-hipokratia-800 bg-white p-8">
+          <span className="text-xs font-semibold uppercase tracking-wide text-salud-600">Planes y precios</span>
+          <h2 className="mt-2 font-display text-2xl font-semibold text-hipokratia-900">
+            {desde ? `Desde ${fmt(desde)} al mes` : 'Precios claros, mensuales'}
+          </h2>
+          <p className="mt-2 text-hipokratia-800/80">
+            Para un profesional (Externo Base o Completo) o para tu centro, pagando por cada usuario.
+            IVA incluido. Calcula el valor de tu equipo y mira a nuestros asistentes explicando cada plan.
+          </p>
+          <a
+            href="https://planes.hipokratia.health"
+            className="mt-5 inline-block rounded-full bg-hipokratia-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-hipokratia-800"
+          >
+            Ver planes y precios →
+          </a>
+        </div>
+
+        <div className="mt-6 rounded-2xl border border-hipokratia-100 bg-white p-8">
           <h2 className="font-display text-xl font-semibold text-hipokratia-900">
             Solicita una demo para tu centro
           </h2>
