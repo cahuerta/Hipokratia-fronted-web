@@ -3,7 +3,6 @@ import { Outlet, Link, NavLink } from 'react-router-dom'
 const navItems = [
   { to: '/pacientes', label: 'Pacientes' },
   { to: '/profesionales', label: 'Centros Médicos / Profesionales' },
-  { href: 'https://planes.hipokratia.health', label: 'Planes y precios' },
 ]
 
 const footerPacientes = [
@@ -15,7 +14,6 @@ const footerProfesionales = [
   { to: '/gestion', label: 'Gestión' },
   { to: '/dossier', label: 'Dossier' },
   { to: '/catedra', label: 'Cátedra Interactiva' },
-  { href: 'https://planes.hipokratia.health', label: 'Planes y precios de Gestión' },
 ]
 
 export default function Layout() {
