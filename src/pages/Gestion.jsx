@@ -18,8 +18,9 @@ export default function Gestion() {
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
         if (!d) return
-        const montos = [d.externo_base, ...(d.centro || []).map((r) => r.precio)].filter((n) => n > 0)
-        if (montos.length) setDesde(Math.min(...montos))
+        // "Desde": lo mínimo que se puede contratar (Externo Base). El precio
+        // por usuario de un centro no se contrata solo.
+        if (d.externo_base > 0) setDesde(d.externo_base)
       })
       .catch(() => {})
   }, [])
