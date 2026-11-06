@@ -57,12 +57,21 @@ export default function Gestion() {
             Para un profesional (Externo Base o Completo) o para tu centro, pagando por cada usuario.
             IVA incluido. Calcula el valor de tu equipo y mira a nuestros asistentes explicando cada plan.
           </p>
-          <a
-            href="https://planes.hipokratia.health"
-            className="mt-5 inline-block rounded-full bg-hipokratia-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-hipokratia-800"
-          >
-            Ver planes y precios →
-          </a>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <a
+              href="https://planes.hipokratia.health/inscribete"
+              className="inline-block rounded-full bg-salud-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-salud-700"
+            >
+              Inscríbete: 1 mes gratis →
+            </a>
+            <a
+              href="https://planes.hipokratia.health"
+              className="inline-block rounded-full bg-hipokratia-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-hipokratia-800"
+            >
+              Ver planes y precios →
+            </a>
+          </div>
+          <p className="mt-3 text-sm text-hipokratia-800/70">Prueba gratis para un profesional, sin tarjeta.</p>
         </div>
 
         <div className="mt-6 rounded-2xl border border-hipokratia-100 bg-white p-8">
