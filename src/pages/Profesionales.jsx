@@ -62,6 +62,23 @@ export default function Profesionales() {
         </div>
       </section>
 
+      <section className="border-t border-hipokratia-100 bg-hipokratia-50">
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-4 px-6 py-14 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h2 className="font-display text-2xl font-semibold text-hipokratia-900">Planes y precios de Hipokratia Gestión</h2>
+            <p className="mt-2 max-w-xl text-hipokratia-800/80">
+              Para un profesional o para todo tu centro. Precios mensuales con IVA incluido, calculadora y video explicativo.
+            </p>
+          </div>
+          <a
+            href="https://planes.hipokratia.health"
+            className="shrink-0 rounded-full bg-hipokratia-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-hipokratia-800"
+          >
+            Ver planes y precios →
+          </a>
+        </div>
+      </section>
+
       <section className="bg-hipokratia-900 text-hipokratia-50">
         <div className="mx-auto flex max-w-6xl flex-col items-start gap-4 px-6 py-16">
           <h2 className="font-display text-2xl font-semibold">
