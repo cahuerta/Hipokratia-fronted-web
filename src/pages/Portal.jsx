@@ -63,7 +63,7 @@ export default function Portal() {
                 Recordatorios, notificaciones y acceso más rápido desde tu celular.
               </p>
               <a
-                href="https://misalud-backend.onrender.com/api/app/descargar"
+                href="https://portal-api.hipokratia.health/api/app/descargar"
                 className="mt-4 inline-block rounded-full border border-hipokratia-300 bg-white px-6 py-3 text-sm font-semibold text-hipokratia-800 transition-colors hover:bg-hipokratia-50"
               >
                 Descargar APK
